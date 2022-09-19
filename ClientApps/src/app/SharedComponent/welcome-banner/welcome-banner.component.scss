@@ -1,0 +1,56 @@
+@import "../../../assets/scss/helpers/variables";
+@import "../../../assets/scss/helpers/mixins";
+@import "../../../assets/scss/helpers/responsive";
+
+.welcome-banner {
+  min-width: 900px;
+  max-width: 900px;
+  min-height: calc(100vh - 100px);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left top;
+  padding-left: 100px;
+  @include desktop-xxl {
+    min-width: 740px;
+    max-width: 740px;
+    padding-left: 100px;
+  }
+  @include desktop {
+    min-width: 53vw;
+    max-width: 53vw;
+    padding-left: 75px;
+  }
+  @include tablet {
+    display: none;
+  }
+  .welcome-banner-content {
+    max-width: 500px;
+    padding: 186px 0 250px 0;
+    @include desktop {
+      padding: 8vw 0 300px 0;
+    }
+  }
+  .banner-logo {
+    max-width: 118px;
+    & > * {
+      width: 100%;
+      display: block;
+    }
+  }
+  .banner-title {
+    font-weight: 500;
+    font-size: 42px;
+    color: $white;
+  }
+  .banner-sub-title {
+    font-size: 28px;
+    margin: 5px 0 2px 0;
+  }
+  .banner-text {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 26px;
+    color: $white;
+    margin-top: 21px;
+  }
+}

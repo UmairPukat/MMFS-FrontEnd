@@ -1,0 +1,49 @@
+[
+  [  
+  {
+      "name": "Aug",
+      "value": 1
+  },
+  {
+      "name": "Sep",
+      "value": 1
+  },
+  {
+      "name": "Oct",
+      "value": 1
+  },
+  {
+      "name": "Nov",
+      "value": 1
+  },
+  {
+      "name": "Dec",
+      "value": 1
+  }
+],
+[
+{
+    "name": "Aug",
+    "value": 0.85
+},
+{
+    "name": "Sep",
+    "value": 0.95
+},
+{
+    "name": "Oct",
+    "value": 0.98
+},
+{
+    "name": "Nov",
+    "value": 1.03
+},
+{
+    "name": "Dec",
+    "value": 0.94
+}
+]
+]
+
+   
+

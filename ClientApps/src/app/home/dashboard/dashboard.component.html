@@ -1,0 +1,118 @@
+<div class="chart-group" >
+    <div class="chart-items" style="height: 370px;">
+      <div>
+        <div id="chart">
+            <apx-chart
+              [series]="chartOptions.series"
+              [chart]="chartOptions.chart"
+              [dataLabels]="chartOptions.dataLabels"
+              [plotOptions]="chartOptions.plotOptions"
+              [yaxis]="chartOptions.yaxis"
+              [legend]="chartOptions.legend"
+              [fill]="chartOptions.fill"
+              [stroke]="chartOptions.stroke"
+              [tooltip]="chartOptions.tooltip"
+              [xaxis]="chartOptions.xaxis"
+            ></apx-chart>
+          </div>              
+      </div>
+    </div>
+    <div class="chart-items" style="height: 370px;">
+      <!-- <div class="chart-title"></div> -->
+      <div >
+        <div id="chart1">
+            <apx-chart
+              [series]="chartOptions1.series"
+              [chart]="chartOptions1.chart"
+              [xaxis]="chartOptions1.xaxis"
+              [dataLabels]="chartOptions1.dataLabels"
+              [grid]="chartOptions1.grid"
+              [stroke]="chartOptions1.stroke"
+              [title]="chartOptions1.title"
+            ></apx-chart>
+          </div>
+      </div>
+    </div>
+</div>
+<div class="chart-group" style="margin-bottom: 100px;">
+    <div class="chart-items" style="height: 370px;">
+        <div id="chart2">
+            <apx-chart
+              [series]="chartOptions2.series"
+              [chart]="chartOptions2.chart"
+              [yaxis]="chartOptions2.yaxis"
+              [xaxis]="chartOptions2.xaxis"
+              [labels]="chartOptions2.labels"
+              [stroke]="chartOptions2.stroke"
+              [plotOptions]="chartOptions2.plotOptions"
+              [markers]="chartOptions2.markers"
+              [fill]="chartOptions2.fill"
+              [tooltip]="chartOptions2.tooltip"
+            ></apx-chart>
+        </div>
+    </div>
+    <div class="chart-items" style="height: 370px; padding: 60px 0px 0px 70px;">
+      <!-- <div class="chart-title"></div> -->
+      <div >
+        <div id="chart3" >
+            <apx-chart
+              [series]="chartOptions3.series"
+              [chart]="chartOptions3.chart"
+              [labels]="chartOptions3.labels"
+              [responsive]="chartOptions3.responsive"
+            ></apx-chart>
+          </div>
+      </div>
+    </div>
+</div>
+
+
+<!-- <div class="col-md-12">
+    <div class="row">
+            <div class="col-md-6 chartCss">
+                      
+            </div>
+            <div class="col-md-6 chartCss">
+                <div id="chart1">
+                    <apx-chart
+                      [series]="chartOptions1.series"
+                      [chart]="chartOptions1.chart"
+                      [xaxis]="chartOptions1.xaxis"
+                      [dataLabels]="chartOptions1.dataLabels"
+                      [grid]="chartOptions1.grid"
+                      [stroke]="chartOptions1.stroke"
+                      [title]="chartOptions1.title"
+                    ></apx-chart>
+                  </div>
+            </div>
+    </div>
+    <div class="row" style="margin-top: 30px;">
+        <div class="col-md-6 chartCss">
+            <div id="chart2">
+                <apx-chart
+                  [series]="chartOptions2.series"
+                  [chart]="chartOptions2.chart"
+                  [yaxis]="chartOptions2.yaxis"
+                  [xaxis]="chartOptions2.xaxis"
+                  [labels]="chartOptions2.labels"
+                  [stroke]="chartOptions2.stroke"
+                  [plotOptions]="chartOptions2.plotOptions"
+                  [markers]="chartOptions2.markers"
+                  [fill]="chartOptions2.fill"
+                  [tooltip]="chartOptions2.tooltip"
+                ></apx-chart>
+              </div>
+        </div>
+        <div class="col-md-6 chartCss">
+            <div id="chart3" >
+                <apx-chart
+                  [series]="chartOptions3.series"
+                  [chart]="chartOptions3.chart"
+                  [labels]="chartOptions3.labels"
+                  [responsive]="chartOptions3.responsive"
+                ></apx-chart>
+              </div>
+              
+        </div>
+    </div>
+</div> -->

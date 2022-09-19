@@ -1,0 +1,11 @@
+<div class="welcome-banner" [ngStyle]="{'background-image': 'url(' + bgImage + ')'}">
+    <div class="welcome-banner-content">
+      <div class="banner-logo">
+        <img [src]="welcomeBannerData?.logoUrl" alt="">
+      </div>
+      <p class="banner-title banner-sub-title">{{welcomeBannerData?.subTitle}}</p>
+      <h1 class="banner-title">{{welcomeBannerData?.mainTitle}}</h1>
+      <p class="banner-text" style="font-weight: 500;"><i style="color: #fff;">"{{welcomeBannerData?.description}}"</i></p>
+      <p class="banner-text">"{{welcomeBannerData?.invitaion}}"</p>
+    </div>
+  </div>

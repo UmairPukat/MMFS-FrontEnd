@@ -1,0 +1,140 @@
+<section class="welcome-page">
+  <app-welcome-banner [bgImage]="leftBannerImgurl"></app-welcome-banner>
+  <div class="welcome-content" style="margin-top: -200px;">
+    <div class="welcome-form-area">
+      <h2 class="welcome-title">Login</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="form-group">
+          <label class="label" for="email">Email</label>
+          <input [ngClass]="{
+            'is-invalid':
+              loginForm.get('email')?.errors &&
+              loginForm.get('email')?.touched
+          }" type="email" formControlName="email" class="form-control form-control-lg" placeholder="email" required autocomplete="off">
+          <p class="invalid-feedback" *ngIf="
+            loginForm.get('email')?.touched &&
+            loginForm.get('email')?.hasError('required')">
+            * email required
+          </p>
+          <p class="invalid-feedback" *ngIf="loginForm.get('email')?.hasError('pattern')">
+            * Email not valid.
+          </p> 
+        </div>
+        <div class="form-group">
+          <label class="label" for="password">Password</label>
+          <input [ngClass]="{
+            'is-invalid':
+              loginForm.get('password')?.errors &&
+              loginForm.get('password')?.touched
+          }" type="password" formControlName="password" class="form-control form-control-lg" placeholder="Password" required autocomplete="off">
+          <p class="invalid-feedback" *ngIf="
+          loginForm.get('password')?.touched &&
+          loginForm.get('password')?.hasError('required')
+        ">
+            * password is required
+          </p>
+          <p class="invalid-feedback" *ngIf="
+          loginForm.get('password')?.touched &&
+          loginForm.get('password')?.hasError('pattern')
+        ">
+            * password have Min 8 characters,<br>
+              at least 1 upper case,<br>
+              1 lower case,<br>
+              1 symbol,<br>
+              1 number
+          </p>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <button  type="button" mat-button class="btn-base btn-simple" (click)="ResetPassword()"><span style="color: blue;">Forgot Password?</span></button>
+          <!-- <button type="button" mat-button class="btn-base btn-simple" (click)="FirstTimelogin()" style="float: right;"><span style="color: blue;">1st Time Login</span></button> -->
+        </div>
+        <button mat-flat-button color="accent" class="btn-accent btn-lg submit-btn" [disabled]="!loginForm.valid">
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<ng-template #displayResetPasswordModal >
+  <div mat-dialog-title>
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="card" style="margin-bottom: 30px; width: 100%;">
+        <div class="card-header" style="text-align: center;">
+            <h3>Reset Account</h3>
+        </div>
+    </div>
+    </div>
+  </div>
+  <mat-dialog-content>
+    <form [formGroup]="ResetForm" >
+      <div class="form-group">
+        <label class="label" for="UserName">User Name</label>
+        <input [ngClass]="{
+          'is-invalid':
+          ResetForm.get('UserName')?.errors &&
+          ResetForm.get('UserName')?.touched
+        }" type="email" formControlName="UserName" class="form-control form-control-lg" placeholder="UserName" required autocomplete="off">
+        <p class="invalid-feedback" *ngIf="
+        ResetForm.get('UserName')?.touched &&
+        ResetForm.get('UserName')?.hasError('required')">
+          * UserName required
+        </p>
+        <p class="invalid-feedback" *ngIf="ResetForm.get('UserName')?.hasError('pattern')">
+          * UserName not valid.
+        </p> 
+      </div>
+      <button mat-flat-button color="accent" [disabled]="!ResetForm.valid" class="btn-accent btn-lg submit-btn" 
+      style="width: 100%;margin-top: 0px;" (click)="SendVarificationCode()">
+        Reset Password
+      </button>
+    </form>
+  </mat-dialog-content>
+  <footer class="sticky-modal-footer">
+    <button  type="button" mat-button class="btn-base btn-simple" (click)="BackBtn()" style = "margin: 20px 30% 0px 30%;">
+      <span >Back To Login</span>
+    </button>
+  </footer>
+</ng-template>
+
+<ng-template #FirstTimeLogInModal >
+  <div mat-dialog-title>
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="card" style="margin-bottom: 30px; width: 100%;">
+        <div class="card-header" style="text-align: center;">
+            <h3>1st Time Login</h3>
+        </div>
+    </div>
+    </div>
+  </div>
+  <mat-dialog-content>
+    <form [formGroup]="FirstTimeLogInForm" >
+      <div class="form-group">
+        <label class="label" for="UserName">User Name</label>
+        <input [ngClass]="{
+          'is-invalid':
+          FirstTimeLogInForm.get('UserName')?.errors &&
+          FirstTimeLogInForm.get('UserName')?.touched
+        }" type="email" formControlName="UserName" class="form-control form-control-lg" placeholder="UserName" required autocomplete="off">
+        <p class="invalid-feedback" *ngIf="
+        FirstTimeLogInForm.get('UserName')?.touched &&
+        FirstTimeLogInForm.get('UserName')?.hasError('required')">
+          * UserName required
+        </p>
+        <p class="invalid-feedback" *ngIf="FirstTimeLogInForm.get('UserName')?.hasError('pattern')">
+          * UserName not valid.
+        </p> 
+      </div>
+      <button mat-flat-button color="accent" [disabled]="!FirstTimeLogInForm.valid" class="btn-accent btn-lg submit-btn" 
+      style="width: 100%;margin-top: 0px;" (click)="FirstLogin()">
+        Login
+      </button>
+    </form>
+  </mat-dialog-content>
+  <footer class="sticky-modal-footer">
+    <button  type="button" mat-button class="btn-base btn-simple" (click)="BackBtn()" style = "margin: 20px 30% 0px 30%;">
+      <span >Back To Login</span>
+    </button>
+  </footer>
+</ng-template>
+

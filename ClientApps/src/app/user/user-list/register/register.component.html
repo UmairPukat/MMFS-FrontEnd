@@ -1,0 +1,1314 @@
+<div *ngIf="!IsUserProfile">
+    <mat-card class="p-mt-0 p-pt-0">
+        <div class="p-d-flex p-jc-between p-ai-center">
+            <mat-card-title class="p-ml-2">Add/Edit User Profile</mat-card-title>
+        </div>
+        <mat-card-content>
+            <mat-tab-group mat-align-tabs="start" [selectedIndex]="selectedIndex">
+                <mat-tab label="Personal">
+                    <form [formGroup]="PersonalForm">
+                        <input type="text" formControlName="UserId" hidden>
+                        <input type="text" formControlName="AddUpdateStatus" hidden>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>Full Name</mat-label>
+                                <input type="text" matInput formControlName="FullName" placeholder="Full Name">
+                                <mat-error style="padding: 0px 0px 5px 10px;">Is Required</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>AGP Id Card</mat-label>
+                                <input type="text" matInput formControlName="AGPIdCard" placeholder="AGP Id Card">
+                                <mat-error style="padding: 0px 0px 5px 10px;">Is Required</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>User Type</mat-label>
+                                <mat-select formControlName="UserTypeId" placeholder="User Type">
+                                    <mat-option style="text-align: center;">Select User Type</mat-option>
+                                    <mat-option *ngFor="let r of RolesDDL" [value]="r.value">
+                                        {{r.text}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error>Please select User Type</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>New NRIC No</mat-label>
+                                <input type="text" matInput formControlName="NewNRICNo" placeholder="New NRIC No">
+                                <mat-error style="padding: 0px 0px 5px 10px;">Is Required</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>Old NRIC No</mat-label>
+                                <input type="text" matInput formControlName="OldNRICNo" placeholder="Old NRIC No">
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>Mobile Phone No</mat-label>
+                                <input type="text" matInput formControlName="MobilePhoneNo" placeholder="Mobile Phone No">
+                            </mat-form-field>
+                        </div>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>Email Address</mat-label>
+                                <input type="email" matInput formControlName="EmailAddress" placeholder="Email Address">
+                                <mat-error style="padding: 0px 0px 5px 10px;">Is Required</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>Gender</mat-label>
+                                <mat-select formControlName="Gender" placeholder="Gender">
+                                    <mat-option style="text-align: center;">Select Gender</mat-option>
+                                    <mat-option value="Male">Male</mat-option>
+                                    <mat-option value="Female">Female</mat-option>
+                                    <mat-option value="Other">Other</mat-option>
+                                </mat-select>
+                                <mat-error>Please select Gender</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>Date Of Birth</mat-label>
+                                <input matInput formControlName="DOB" [matDatepicker]="picker1">
+                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                                <mat-error style="padding: 0px 0px 5px 10px;">Is Required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>Race</mat-label>
+                                <mat-select formControlName="RaceId" placeholder="Race">
+                                    <mat-option style="text-align: center;">Select Race</mat-option>
+                                    <mat-option *ngFor="let r of Races" [value]="r.value">
+                                        {{r.text}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error>Please select Gender</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>Religion</mat-label>
+                                <mat-select formControlName="ReligionId" placeholder="Religion">
+                                    <mat-option style="text-align: center;">Select Religion</mat-option>
+                                    <mat-option *ngFor="let r of Religion" [value]="r.value">
+                                        {{r.text}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error>Please select Gender</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>Joining Date</mat-label>
+                                <input matInput formControlName="JoiningDate" [matDatepicker]="picker2">
+                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                                <mat-error style="padding: 0px 0px 5px 10px;">Is Required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>Driving License Type</mat-label>
+                                <input type="text" matInput formControlName="DrivingLicenseType"
+                                    placeholder="Driving License Type">
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>Driving License Class</mat-label>
+                                <input type="text" matInput formControlName="DrivingLicenseClass"
+                                    placeholder="Driving License Class">
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>Company Vehicle Plate No</mat-label>
+                                <input type="text" matInput formControlName="CompanyVehiclePlateNo"
+                                    placeholder="Company Vehicle Plate No">
+                            </mat-form-field>
+                        </div>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>Company Vehicle Model</mat-label>
+                                <input type="text" matInput formControlName="CompanyVehicleModel"
+                                    placeholder="Company Vehicle Model">
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>Company House Address</mat-label>
+                                <input type="text" matInput formControlName="CompanyHouseAddress"
+                                    placeholder="Company House Address">
+                                <mat-error style="padding: 0px 0px 5px 10px;">Is Required</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>Post Code</mat-label>
+                                <input type="text" matInput formControlName="Postcode" placeholder="Post Code">
+                                <mat-error style="padding: 0px 0px 5px 10px;">Is Required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>City Name</mat-label>
+                                <mat-select formControlName="CityId" placeholder="City Name">
+                                    <mat-option style="text-align: center;">Select City</mat-option>
+                                    <mat-option *ngFor="let c of CityDDL" [value]="c.value">
+                                        {{c.text}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error>Please select City</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>State Name</mat-label>
+                                <mat-select formControlName="StateId" placeholder="State Name">
+                                    <mat-option style="text-align: center;">Select State</mat-option>
+                                    <mat-option *ngFor="let s of StateDDL" [value]="s.value">
+                                        {{s.text}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error>Please select State</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>User Status</mat-label>
+                                <mat-select formControlName="Status" placeholder="User Status">
+                                    <mat-option value="1" >Active</mat-option>
+                                    <mat-option value="0">InActive</mat-option>
+                                </mat-select>
+                                <mat-error>Please select State</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>User Name</mat-label>
+                                <input type="email" matInput formControlName="UserName" placeholder="User Name">
+                                <mat-error style="padding: 0px 0px 5px 10px;">Is Required</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>Password</mat-label>
+                                <input type="password" matInput formControlName="Password"
+                                    placeholder="Password">
+                                <mat-error style="padding: 0px 0px 5px 10px;">Is Required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="content-top-row content-top-row-order-processing" style="margin-top: 40px;">
+                            <div class="example-button-container" style="margin-left: 75%;">
+                                <button style="margin-right: 10px;" mat-fab color="accent"
+                                    aria-label="Example icon button with a bookmark icon" tooltipPosition="top"
+                                     (click)="SaveUserPersonalInfo()" [disabled]="!PersonalForm.valid">
+                                     <!-- [disabled]="!PersonalForm.valid" -->
+                                    Save
+                                </button>
+                                <button mat-fab color="warn" aria-label="Example icon button with a bookmark icon"
+                                    matTooltip="Cancel " tooltipPosition="top" (click)="closeDialog()">
+                                    <i [class]="'fa fa-times'" [ngStyle]="{'color': '#fff'}"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </mat-tab>
+                <mat-tab label="Business">
+                    <form [formGroup]="BusinessForm">
+                        <mat-label style="font-weight: bold;">Business Information</mat-label>
+                        <input type="text" formControlName="UserId" hidden>
+                        <input type="text" formControlName="AddUpdateStatus" hidden>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>Company</mat-label>
+                                <input type="text" matInput formControlName="Company" placeholder="Company">
+                                <mat-error style="padding: 0px 0px 5px 10px;">Is Required</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>Enterprise SSM No</mat-label>
+                                <input type="text" matInput formControlName="EnterpriseSSMNo"
+                                    placeholder="Enterprise SSM No">
+                                <mat-error style="padding: 0px 0px 5px 10px;">Is Required</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>SSM Expiry Date</mat-label>
+                                <input matInput formControlName="SSMExpiryDate" [matDatepicker]="picker3">
+                                <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                                <mat-datepicker #picker3></mat-datepicker>
+                                <mat-error style="padding: 0px 0px 5px 10px;">Is Required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>Business Address</mat-label>
+                                <input type="text" matInput formControlName="BusinessAddress"
+                                    placeholder="Business Address">
+                                <mat-error style="padding: 0px 0px 5px 10px;">Is Required</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>Postcode</mat-label>
+                                <input type="email" formControlName="Postcode" matInput placeholder="Postcode">
+                                <mat-error style="padding: 0px 0px 5px 10px;">Is Required</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>City</mat-label>
+                                <mat-select formControlName="CityId" placeholder="City">
+                                    <mat-option style="text-align: center;">Select City</mat-option>
+                                    <mat-option *ngFor="let c of CityDDL" [value]="c.value">
+                                        {{c.text}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error>Please select City</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>State</mat-label>
+                                <mat-select formControlName="StateId" placeholder="State">
+                                    <mat-option style="text-align: center;">Select State</mat-option>
+                                    <mat-option *ngFor="let s of StateDDL" [value]="s.value">
+                                        {{s.text}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error>Please select State</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>Bank Account No</mat-label>
+                                <input type="text" formControlName="BankAccountNo" matInput placeholder="Bank Account No">
+                                <mat-error style="padding: 0px 0px 5px 10px;">Is Required</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>AGP Manager Name</mat-label>
+                                <input type="text" formControlName="AGPManagerName" matInput placeholder="AGP Manager Name">
+                                <mat-error style="padding: 0px 0px 5px 10px;">Is Required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>AGP Manager Phone No</mat-label>
+                                <input type="text" formControlName="AGPManagerPhoneNo" matInput
+                                    placeholder="AGP Manager Phone No">
+                                <mat-error style="padding: 0px 0px 5px 10px;">Is Required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <mat-label style="font-weight: bold;">House and Shop Lot Information</mat-label>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>House Type</mat-label>
+                                <input type="text" formControlName="HouseType" matInput placeholder="House Type">
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>Home Furnishing</mat-label>
+                                <input type="text" matInput formControlName="HomeFurnishing" placeholder="Home Furnishing">
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 28%;">
+                                <mat-label>Shop Lot</mat-label>
+                                <input type="text" matInput formControlName="ShopLot" placeholder="Shop Lot">
+                            </mat-form-field>
+                        </div>
+                        <div class="content-top-row content-top-row-order-processing" style="margin-top: 40px;">
+                            <div class="example-button-container" style="margin-left: 75%;">
+                                <button style="margin-right: 10px;" mat-fab color="accent"
+                                    aria-label="Example icon button with a bookmark icon"tooltipPosition="top"
+                                    (click)="SaveBusinessProfile()" [disabled]="!BusinessForm.valid">
+                                    Save
+                                </button>
+                                <button mat-fab color="warn" aria-label="Example icon button with a bookmark icon"
+                                    matTooltip="Cancel " tooltipPosition="top" (click)="closeDialog()">
+                                    <i [class]="'fa fa-times'" [ngStyle]="{'color': '#fff'}"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </mat-tab>
+                <mat-tab label="Emergency & Medical">
+                    <form [formGroup]="EmergencyForm">
+                        <input type="text" formControlName="UserId" hidden>
+                        <input type="text" formControlName="AddUpdateStatus" hidden>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 30%;">
+                                <mat-label>Emergency Contact Name</mat-label>
+                                <input type="text" matInput formControlName="ContactName" placeholder="Emergency Contact Name">
+                                <mat-error style="padding: 0px 0px 5px 10px;">Is Required</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 30%;">
+                                <mat-label>Relationship</mat-label>
+                                <mat-select placeholder="Relationship" formControlName="Relationship">
+                                    <mat-option value="Brother">Brother</mat-option>
+                                    <!-- <mat-option  *ngFor="let frequency of frequencies" [value]="frequency.frequencyId">
+                                        {{frequency.name}}
+                                    </mat-option>            -->
+                                </mat-select>
+                                <mat-error>Please select Relationship</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 30%;">
+                                <mat-label>Contact No</mat-label>
+                                <input type="text" matInput formControlName="ContactNo" placeholder="Contact No">
+                                <mat-error style="padding: 0px 0px 5px 10px;">Enter Contact No</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                style="width: 30%;">
+                                <mat-label>Covid-19 Vaccination</mat-label>
+                                <mat-select placeholder="Covid-19 Vaccination" formControlName="Vaccination">
+                                    <mat-option value="Sinovac">Sinovac</mat-option>
+                                    <!-- <mat-option  *ngFor="let frequency of frequencies" [value]="frequency.frequencyId">
+                                        {{frequency.name}}
+                                    </mat-option>            -->
+                                </mat-select>
+                                <mat-error style="padding: 0px 0px 5px 10px;">Select Covid-19 Vaccination</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="content-top-row content-top-row-order-processing" style="margin-top: 40px;">
+                            <div class="example-button-container" style="margin-left: 75%;">
+                                <button style="margin-right: 10px;" mat-fab color="accent"
+                                    aria-label="Example icon button with a bookmark icon" tooltipPosition="top"
+                                    (click)="SaveUserEmergencyProfile()" [disabled]="!EmergencyForm.valid">
+                                    Save
+                                </button>
+                                <button mat-fab color="warn" aria-label="Example icon button with a bookmark icon"
+                                    matTooltip="Cancel " tooltipPosition="top" (click)="closeDialog()">
+                                    <i [class]="'fa fa-times'" [ngStyle]="{'color': '#fff'}"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </mat-tab>
+                <mat-tab label="Cheque Information">
+                    <form [formGroup]="ChequeForm">
+                        <input type="text" formControlName="UserId" hidden>
+                        <input type="text" formControlName="AddUpdateStatus" hidden>
+                        <mat-grid-list cols="4" rowHeight="2:0.8">
+                            <mat-grid-tile>
+                                <mat-label>Particulars</mat-label>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-label>Amount(RM)</mat-label>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-label>Payment Method</mat-label>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-label>Remarks</mat-label>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                        <mat-grid-list cols="4" rowHeight="2:0.8">
+                            <mat-grid-tile>
+                                <mat-label>Plote</mat-label>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Amount</mat-label>
+                                    <input type="number" matInput formControlName="PloteAmount" placeholder="Enter Amount">
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                    style="width: 95%;">
+                                    <mat-label>Payment Method</mat-label>
+                                    <mat-select placeholder="Payment Method" formControlName="PlotePaymentMethod">
+                                        <mat-option *ngFor="let p of PaymentMethod" [value]="p.value">
+                                            {{p.text}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Remarks</mat-label>
+                                    <input type="text" matInput formControlName="PloteRemark" placeholder="First Name">
+                                </mat-form-field>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                        <mat-grid-list cols="4" rowHeight="2:0.8">
+                            <mat-grid-tile>
+                                <mat-label>Operation Reserve</mat-label>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Amount</mat-label>
+                                    <input type="number" matInput formControlName="OperationReserveAmount" placeholder="Enter Amount">
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                    style="width: 95%;">
+                                    <mat-label>Payment Method</mat-label>
+                                    <mat-select placeholder="Payment Method" formControlName="OperationReservePaymentMethod">
+                                        <mat-option *ngFor="let p of PaymentMethod" [value]="p.value">
+                                            {{p.text}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Remarks</mat-label>
+                                    <input type="text" matInput formControlName="OperationReserveRemark" placeholder="First Name">
+                                </mat-form-field>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                        <mat-grid-list cols="4" rowHeight="2:0.8">
+                            <mat-grid-tile>
+                                <mat-label>JV Agreement</mat-label>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Amount</mat-label>
+                                    <input type="number" matInput formControlName="JVAgreementAmount" placeholder="Enter Amount">
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                    style="width: 95%;">
+                                    <mat-label>Payment Method</mat-label>
+                                    <mat-select placeholder="Payment Method" formControlName="JVAgreementPaymentMethod">
+                                        <mat-option *ngFor="let p of PaymentMethod" [value]="p.value">
+                                            {{p.text}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Remarks</mat-label>
+                                    <input type="text" matInput formControlName="JVAgreementRemark" placeholder="First Name">
+                                </mat-form-field>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                        <mat-grid-list cols="4" rowHeight="2:0.8">
+                            <mat-grid-tile>
+                                <mat-label>Stamping</mat-label>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Amount</mat-label>
+                                    <input type="number" matInput formControlName="StampingAmount" placeholder="Enter Amount">
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                    style="width: 95%;">
+                                    <mat-label>Payment Method</mat-label>
+                                    <mat-select placeholder="Payment Method" formControlName="StampingPaymentMethod">
+                                        <mat-option *ngFor="let p of PaymentMethod" [value]="p.value">
+                                            {{p.text}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Remarks</mat-label>
+                                    <input type="text" matInput formControlName="StampingRemark" placeholder="First Name">
+                                </mat-form-field>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                        <mat-grid-list cols="4" rowHeight="2:0.8">
+                            <mat-grid-tile>
+                                <mat-label>House Utilities Deposit</mat-label>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Amount</mat-label>
+                                    <input type="number" matInput formControlName="HouseUtilitiesAmount" placeholder="Enter Amount">
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                    style="width: 95%;">
+                                    <mat-label>Payment Method</mat-label>
+                                    <mat-select placeholder="Payment Method" formControlName="HouseUtilitiesPaymentMethod">
+                                        <mat-option *ngFor="let p of PaymentMethod" [value]="p.value">
+                                            {{p.text}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Remarks</mat-label>
+                                    <input type="text" matInput formControlName="HouseUtilitiesRemark" placeholder="First Name">
+                                </mat-form-field>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                        <mat-grid-list cols="4" rowHeight="2:0.8">
+                            <mat-grid-tile>
+                                <mat-label>House Furnishing</mat-label>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Amount</mat-label>
+                                    <input type="number" matInput formControlName="HouseFurnishingAmount" placeholder="Enter Amount">
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                    style="width: 95%;">
+                                    <mat-label>Payment Method</mat-label>
+                                    <mat-select placeholder="Payment Method" formControlName="HouseFurnishingPaymentMethod">
+                                        <mat-option *ngFor="let p of PaymentMethod" [value]="p.value">
+                                            {{p.text}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Remarks</mat-label>
+                                    <input type="text" matInput formControlName="HouseFurnishingRemark" placeholder="First Name">
+                                </mat-form-field>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                        <mat-grid-list cols="4" rowHeight="2:0.8">
+                            <mat-grid-tile>
+                                <mat-label>Shop Lot</mat-label>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Amount</mat-label>
+                                    <input type="number" matInput formControlName="ShopLotAmount" placeholder="Enter Amount">
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                    style="width: 95%;">
+                                    <mat-label>Payment Method</mat-label>
+                                    <mat-select placeholder="Payment Method" formControlName="ShopLotPaymentMethod">
+                                        <mat-option *ngFor="let p of PaymentMethod" [value]="p.value">
+                                            {{p.text}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Remarks</mat-label>
+                                    <input type="text" matInput formControlName="ShopLotRemark" placeholder="First Name">
+                                </mat-form-field>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                        <div class="content-top-row content-top-row-order-processing" style="margin-top: 40px;">
+                            <div class="example-button-container" style="margin-left: 80%;">
+                                <button style="margin-right: 10px;" mat-fab color="accent"
+                                    aria-label="Example icon button with a bookmark icon" tooltipPosition="top"
+                                    (click)="SaveUserChequeProfile()" [disabled]="!ChequeForm.valid">
+                                    Save
+                                </button>
+                                <button mat-fab color="warn" aria-label="Example icon button with a bookmark icon"
+                                    matTooltip="Cancel " tooltipPosition="top" (click)="closeDialog()">
+                                    <i [class]="'fa fa-times'" [ngStyle]="{'color': '#fff'}"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div *ngIf="IsUserProfile">
+    <mat-card class="p-mt-0 p-pt-0">
+        <div class="p-d-flex p-jc-between p-ai-center" style="width: 100%; height: 40px;">
+            <mat-card-title class="p-ml-2" >User Profile</mat-card-title>
+        </div>
+        <mat-card-content>
+            <mat-tab-group mat-align-tabs="start" [selectedIndex]="selectedIndex">
+                <mat-tab label="Personal">
+                    <form [formGroup]="PersonalForm">
+                        <div class="content-top-row content-top-row-order-processing ">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>Full Name</mat-label>
+                                <input type="text" matInput formControlName="FullName" placeholder="Full Name" readonly>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>AGP Id Card</mat-label>
+                                <input type="text" matInput formControlName="AGPIdCard" placeholder="AGP Id Card" readonly>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>User Type</mat-label>
+                                <mat-select formControlName="UserTypeId" placeholder="User Type" [disabled]="true">
+                                    <mat-option style="text-align: center;">Select User Type</mat-option>
+                                    <mat-option *ngFor="let r of RolesDDL" [value]="r.value">
+                                        {{r.text}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>New NRIC No</mat-label>
+                                <input type="text" matInput formControlName="NewNRICNo" placeholder="New NRIC No" readonly>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>Old NRIC No</mat-label>
+                                <input type="text" matInput formControlName="OldNRICNo" placeholder="Old NRIC No" readonly>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>Mobile Phone No</mat-label>
+                                <input type="text" matInput formControlName="MobilePhoneNo" placeholder="Mobile Phone No" readonly>
+                            </mat-form-field>
+                        </div>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>Email Address</mat-label>
+                                <input type="email" matInput formControlName="EmailAddress" placeholder="Email Address" readonly>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>Gender</mat-label>
+                                <mat-select formControlName="Gender" placeholder="Gender" [disabled]="true">
+                                    <mat-option style="text-align: center;">Select Gender</mat-option>
+                                    <mat-option value="Male">Male</mat-option>
+                                    <mat-option value="Female">Female</mat-option>
+                                    <mat-option value="Other">Other</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>Date Of Birth</mat-label>
+                                <input matInput formControlName="DOB" [matDatepicker]="picker1" [disabled]="true">
+                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                                <mat-error style="padding: 0px 0px 5px 10px;">Is Required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>Race</mat-label>
+                                <mat-select formControlName="RaceId" placeholder="Race" [disabled]="true">
+                                    <mat-option style="text-align: center;">Select Race</mat-option>
+                                    <mat-option *ngFor="let r of Races" [value]="r.value">
+                                        {{r.text}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>Religion</mat-label>
+                                <mat-select formControlName="ReligionId" placeholder="Religion" [disabled]="true">
+                                    <mat-option style="text-align: center;">Select Religion</mat-option>
+                                    <mat-option *ngFor="let r of Religion" [value]="r.value">
+                                        {{r.text}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>Joining Date</mat-label>
+                                <input matInput formControlName="JoiningDate" [matDatepicker]="picker2" [disabled]="true">
+                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>Driving License Type</mat-label>
+                                <input type="text" matInput formControlName="DrivingLicenseType"
+                                    placeholder="Driving License Type" readonly>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>Driving License Class</mat-label>
+                                <input type="text" matInput formControlName="DrivingLicenseClass"
+                                    placeholder="Driving License Class" readonly>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>Company Vehicle Plate No</mat-label>
+                                <input type="text" matInput formControlName="CompanyVehiclePlateNo"
+                                    placeholder="Company Vehicle Plate No" readonly>
+                            </mat-form-field>
+                        </div>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>Company Vehicle Model</mat-label>
+                                <input type="text" matInput formControlName="CompanyVehicleModel"
+                                    placeholder="Company Vehicle Model" readonly>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>Company House Address</mat-label>
+                                <input type="text" matInput formControlName="CompanyHouseAddress"
+                                    placeholder="Company House Address" readonly>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>Post Code</mat-label>
+                                <input type="text" matInput formControlName="Postcode" placeholder="Post Code" readonly>
+                            </mat-form-field>
+                        </div>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>City Name</mat-label>
+                                <mat-select formControlName="CityId" placeholder="City Name" [disabled]="true">
+                                    <mat-option style="text-align: center;">Select City</mat-option>
+                                    <mat-option *ngFor="let c of CityDDL" [value]="c.value">
+                                        {{c.text}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>State Name</mat-label>
+                                <mat-select formControlName="StateId" placeholder="State Name" [disabled]="true">
+                                    <mat-option style="text-align: center;">Select State</mat-option>
+                                    <mat-option *ngFor="let s of StateDDL" [value]="s.value">
+                                        {{s.text}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>User Status</mat-label>
+                                <mat-select formControlName="Status" placeholder="User Status" [disabled]="true">
+                                    <mat-option value="1" >Active</mat-option>
+                                    <mat-option value="0">InActive</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>User Name</mat-label>
+                                <input type="email" matInput formControlName="UserName" placeholder="User Name" readonly>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>Password</mat-label>
+                                <input type="password" matInput formControlName="Password"
+                                    placeholder="Password" readonly>
+                            </mat-form-field>
+                        </div>
+                    </form>
+                </mat-tab>
+                <mat-tab label="Business">
+                    <form [formGroup]="BusinessForm">
+                        <mat-label style="font-weight: bold;">Business Information</mat-label>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>Company</mat-label>
+                                <input type="text" matInput formControlName="Company" placeholder="Company" readonly>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>Enterprise SSM No</mat-label>
+                                <input type="text" matInput formControlName="EnterpriseSSMNo"
+                                    placeholder="Enterprise SSM No" readonly>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>SSM Expiry Date</mat-label>
+                                <input matInput formControlName="SSMExpiryDate" [matDatepicker]="picker3" [disabled]="true">
+                                <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                                <mat-datepicker #picker3></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>Business Address</mat-label>
+                                <input type="text" matInput formControlName="BusinessAddress"
+                                    placeholder="Business Address" readonly>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>Postcode</mat-label>
+                                <input type="email" formControlName="Postcode" matInput placeholder="Postcode" readonly>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>City</mat-label>
+                                <mat-select formControlName="CityId" placeholder="City" [disabled]="true">
+                                    <mat-option style="text-align: center;">Select City</mat-option>
+                                    <mat-option *ngFor="let c of CityDDL" [value]="c.value">
+                                        {{c.text}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>State</mat-label>
+                                <mat-select formControlName="StateId" placeholder="State" [disabled]="true">
+                                    <mat-option style="text-align: center;">Select State</mat-option>
+                                    <mat-option *ngFor="let s of StateDDL" [value]="s.value">
+                                        {{s.text}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>Bank Account No</mat-label>
+                                <input type="text" formControlName="BankAccountNo" matInput placeholder="Bank Account No" readonly>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>AGP Manager Name</mat-label>
+                                <input type="text" formControlName="AGPManagerName" matInput placeholder="AGP Manager Name" readonly>
+                            </mat-form-field>
+                        </div>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>AGP Manager Phone No</mat-label>
+                                <input type="text" formControlName="AGPManagerPhoneNo" matInput
+                                    placeholder="AGP Manager Phone No" readonly>
+                            </mat-form-field>
+                        </div>
+                        <mat-label style="font-weight: bold;">House and Shop Lot Information</mat-label>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>House Type</mat-label>
+                                <input type="text" formControlName="HouseType" matInput placeholder="House Type" readonly>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>Home Furnishing</mat-label>
+                                <input type="text" matInput formControlName="HomeFurnishing" placeholder="Home Furnishing" readonly>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 28%;">
+                                <mat-label>Shop Lot</mat-label>
+                                <input type="text" matInput formControlName="ShopLot" placeholder="Shop Lot" readonly>
+                            </mat-form-field>
+                        </div>
+                    </form>
+                </mat-tab>
+                <mat-tab label="Emergency & Medical">
+                    <form [formGroup]="EmergencyForm">
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 30%;">
+                                <mat-label>Emergency Contact Name</mat-label>
+                                <input type="text" matInput formControlName="ContactName" placeholder="Emergency Contact Name" readonly>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 30%;">
+                                <mat-label>Relationship</mat-label>
+                                <mat-select placeholder="Relationship" formControlName="Relationship" [disabled]="true">
+                                    <mat-option value="Brother">Brother</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="content-top-row content-top-row-order-processing">
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 30%;">
+                                <mat-label>Contact No</mat-label>
+                                <input type="text" matInput formControlName="ContactNo" placeholder="Contact No" readonly>
+                            </mat-form-field>
+                            <mat-form-field appearence='fill'
+                                class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                style="width: 30%;">
+                                <mat-label>Covid-19 Vaccination</mat-label>
+                                <mat-select placeholder="Covid-19 Vaccination" formControlName="Vaccination" [disabled]="true">
+                                    <mat-option value="Sinovac">Sinovac</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </form>
+                </mat-tab>
+                <mat-tab label="Cheque Information">
+                    <form [formGroup]="ChequeForm">
+                        <input type="text" formControlName="UserId" hidden>
+                        <input type="text" formControlName="AddUpdateStatus" hidden>
+                        <mat-grid-list cols="4" rowHeight="2:0.8">
+                            <mat-grid-tile>
+                                <mat-label>Particulars</mat-label>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-label>Amount(RM)</mat-label>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-label>Payment Method</mat-label>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-label>Remarks</mat-label>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                        <mat-grid-list cols="4" rowHeight="2:0.8">
+                            <mat-grid-tile>
+                                <mat-label>Plote</mat-label>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Amount</mat-label>
+                                    <input type="number" matInput formControlName="PloteAmount" placeholder="Enter Amount" readonly>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                    style="width: 95%;">
+                                    <mat-label>Payment Method</mat-label>
+                                    <mat-select placeholder="Payment Method" formControlName="PlotePaymentMethod" [disabled]="true">
+                                        <mat-option *ngFor="let p of PaymentMethod" [value]="p.value">
+                                            {{p.text}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Remarks</mat-label>
+                                    <input type="text" matInput formControlName="PloteRemark" placeholder="First Name" readonly>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                        <mat-grid-list cols="4" rowHeight="2:0.8">
+                            <mat-grid-tile>
+                                <mat-label>Operation Reserve</mat-label>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Amount</mat-label>
+                                    <input type="number" matInput formControlName="OperationReserveAmount" placeholder="Enter Amount" readonly>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                    style="width: 95%;">
+                                    <mat-label>Payment Method</mat-label>
+                                    <mat-select placeholder="Payment Method" formControlName="OperationReservePaymentMethod" [disabled]="true">
+                                        <mat-option *ngFor="let p of PaymentMethod" [value]="p.value">
+                                            {{p.text}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Remarks</mat-label>
+                                    <input type="text" matInput formControlName="OperationReserveRemark" placeholder="First Name" readonly>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                        <mat-grid-list cols="4" rowHeight="2:0.8">
+                            <mat-grid-tile>
+                                <mat-label>JV Agreement</mat-label>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Amount</mat-label>
+                                    <input type="number" matInput formControlName="JVAgreementAmount" placeholder="Enter Amount" readonly>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                    style="width: 95%;">
+                                    <mat-label>Payment Method</mat-label>
+                                    <mat-select placeholder="Payment Method" formControlName="JVAgreementPaymentMethod" [disabled]="true">
+                                        <mat-option *ngFor="let p of PaymentMethod" [value]="p.value">
+                                            {{p.text}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Remarks</mat-label>
+                                    <input type="text" matInput formControlName="JVAgreementRemark" placeholder="First Name" readonly>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                        <mat-grid-list cols="4" rowHeight="2:0.8">
+                            <mat-grid-tile>
+                                <mat-label>Stamping</mat-label>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Amount</mat-label>
+                                    <input type="number" matInput formControlName="StampingAmount" placeholder="Enter Amount" readonly>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                    style="width: 95%;">
+                                    <mat-label>Payment Method</mat-label>
+                                    <mat-select placeholder="Payment Method" formControlName="StampingPaymentMethod" [disabled]="true">
+                                        <mat-option *ngFor="let p of PaymentMethod" [value]="p.value">
+                                            {{p.text}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Remarks</mat-label>
+                                    <input type="text" matInput formControlName="StampingRemark" placeholder="First Name" readonly>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                        <mat-grid-list cols="4" rowHeight="2:0.8">
+                            <mat-grid-tile>
+                                <mat-label>House Utilities Deposit</mat-label>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Amount</mat-label>
+                                    <input type="number" matInput formControlName="HouseUtilitiesAmount" placeholder="Enter Amount" readonly>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                    style="width: 95%;">
+                                    <mat-label>Payment Method</mat-label>
+                                    <mat-select placeholder="Payment Method" formControlName="HouseUtilitiesPaymentMethod" [disabled]="true">
+                                        <mat-option *ngFor="let p of PaymentMethod" [value]="p.value">
+                                            {{p.text}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Remarks</mat-label>
+                                    <input type="text" matInput formControlName="HouseUtilitiesRemark" placeholder="First Name" readonly>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                        <mat-grid-list cols="4" rowHeight="2:0.8">
+                            <mat-grid-tile>
+                                <mat-label>House Furnishing</mat-label>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Amount</mat-label>
+                                    <input type="number" matInput formControlName="HouseFurnishingAmount" placeholder="Enter Amount" readonly>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                    style="width: 95%;">
+                                    <mat-label>Payment Method</mat-label>
+                                    <mat-select placeholder="Payment Method" formControlName="HouseFurnishingPaymentMethod" [disabled]="true">
+                                        <mat-option *ngFor="let p of PaymentMethod" [value]="p.value">
+                                            {{p.text}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Remarks</mat-label>
+                                    <input type="text" matInput formControlName="HouseFurnishingRemark" placeholder="First Name" readonly>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                        <mat-grid-list cols="4" rowHeight="2:0.8">
+                            <mat-grid-tile>
+                                <mat-label>Shop Lot</mat-label>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Amount</mat-label>
+                                    <input type="number" matInput formControlName="ShopLotAmount" placeholder="Enter Amount" readonly>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                    style="width: 95%;">
+                                    <mat-label>Payment Method</mat-label>
+                                    <mat-select placeholder="Payment Method" formControlName="ShopLotPaymentMethod" [disabled]="true">
+                                        <mat-option *ngFor="let p of PaymentMethod" [value]="p.value">
+                                            {{p.text}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearence='fill'
+                                    class="top-row-first-filed-item top-row-first-filed-item-order-processing ProfileClass"
+                                    style="width: 95%;">
+                                    <mat-label>Enter Remarks</mat-label>
+                                    <input type="text" matInput formControlName="ShopLotRemark" placeholder="First Name" readonly>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                    </form>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card-content>
+    </mat-card>
+</div>

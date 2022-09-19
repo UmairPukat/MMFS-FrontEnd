@@ -1,0 +1,57 @@
+<div style="background-color: #fff;">
+    <h3 style="margin: 5px 0px 0px 10px;">User Permission</h3>
+    <div class="content-top-row content-top-row-order-processing">
+        <mat-form-field
+          appearence="fill"
+          class="top-row-first-filed-item top-row-first-filed-item-order-processing "
+          style="margin:10px 20px 0px 20px;width: 100%;">
+        <mat-label>Search</mat-label>
+          <input matInput  name="Search User" (keyup) ="applyFilter($event)"/>
+        </mat-form-field>
+    </div>
+    <div style="margin: 40px 20px 0px 20px;">
+    <table mat-table class="basic-table plant-model-table"[dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="Name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="">
+                <p class="header-text">Name</p>
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.userName}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="">
+                <p class="header-text">Email</p>
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.email}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Role">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="">
+                <p class="header-text">Role</p>
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.roleName}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Action" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="">
+            <p class="header-text">Action</p>
+        </th>
+        <td mat-cell *matCellDef="let element" class="row-action-btns-column">
+            <div class="row-action-btns">
+            <button mat-icon-button class="edit-btn"  aria-label="Edit Row"
+                    pTooltip="Edit User" tooltipPosition="top" (click)="AssignPermission(element)">
+                    <i class="fa fa-key"></i>
+            </button>
+            </div>
+        </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayColumn"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayColumn;"></tr>
+        <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4" style="text-align: center;">No data matching</td>
+        </tr>
+    </table>
+    <mat-paginator
+        class="basic-paginataor"
+        [pageSizeOptions]="[3, 10, 20]"
+        showFirstLastButtons>
+    </mat-paginator>
+    </div>
+</div>

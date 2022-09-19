@@ -1,0 +1,52 @@
+<div style="background-color: #fff;">
+    <h3 style="margin: 5px 0px 0px 10px;">User List In Role</h3>
+    <h5 style="margin: 40px 0px 0px 20px;">Role: <span style="font-size: 15px;">{{RoleName}}</span></h5>
+
+    <div style="margin: 20px 30px 0px 20px;">
+        <table mat-table class="basic-table plant-model-table" [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="SN">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header="">
+                    <p class="header-text">SN</p>
+                </th>
+                <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+            </ng-container>
+            <ng-container matColumnDef="UserName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header="">
+                    <p class="header-text">User Name</p>
+                </th>
+                <td mat-cell *matCellDef="let element">{{element.email}}</td>
+            </ng-container>
+            <ng-container matColumnDef="Name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header="">
+                    <p class="header-text">Name</p>
+                </th>
+                <td mat-cell *matCellDef="let element">{{element.userName}}</td>
+            </ng-container>
+            <!-- <ng-container matColumnDef="Action">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header="">
+                    <p class="header-text">Action</p>
+                </th>
+                <td mat-cell *matCellDef="let element" class="row-action-btns-column">
+                    <div class="row-action-btns">
+                        <button mat-icon-button class="edit-btn" aria-label="Edit Row" pTooltip="Edit User"
+                            tooltipPosition="top" (click)="editUserRole(element)">
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                <path
+                                    d="M0.75 9.06298V11.2505H2.9375L9.38917 4.79881L7.20167 2.61131L0.75 9.06298ZM11.0808 3.10715C11.3083 2.87965 11.3083 2.51215 11.0808 2.28465L9.71583 0.919648C9.48833 0.692148 9.12083 0.692148 8.89333 0.919648L7.82583 1.98715L10.0133 4.17465L11.0808 3.10715Z"
+                                    fill="white" />
+                            </svg>
+                        </button>
+                    </div>
+                </td>
+            </ng-container> -->
+            <tr mat-header-row *matHeaderRowDef="displayColumn"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayColumn;"></tr>
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4" style="text-align: center;">No data matching</td>
+            </tr>
+        </table>
+        <mat-paginator class="basic-paginataor" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+        </mat-paginator>
+    </div>
+    
+</div>

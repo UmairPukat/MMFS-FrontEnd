@@ -1,0 +1,19 @@
+
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel=>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <div class="sidebar open">
+   <div class="logo-details">
+    <img src='/assets/images/download.jfif' style="width: 100px; height: 100px; margin:10px 60px; border-radius: 50%;"/>
+   </div>
+  
+   <ul class="nav-list">
+    <li *ngFor="let p of PermissionDDL">
+      <a routerLink="{{p.url}}">
+        <i class={{p.icons}} ></i>
+        <span class="links_name">{{p.name}}</span>
+      </a>
+      <span class="tooltip">{{p.name}}</span>
+    </li>
+   </ul>
+ </div>
+

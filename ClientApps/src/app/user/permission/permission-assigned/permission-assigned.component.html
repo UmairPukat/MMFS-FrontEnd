@@ -1,0 +1,53 @@
+<div style="background-color: #fff;">
+  <h3 style="margin: 0px 0px 0px 10px;">All Component</h3>
+  <div class="content-top-row content-top-row-order-processing">
+    <mat-form-field appearence="fill" class="top-row-first-filed-item top-row-first-filed-item-order-processing "
+      style="margin:0px 20px 0px 20px;width: 100%;">
+      <mat-label>Search</mat-label>
+      <input matInput name="Search User" (keyup)="applyFilter($event)" />
+    </mat-form-field>
+  </div>
+  <ngx-spinner style="z-index: 99;
+    position: absolute;" bdColor="rgba(0, 0, 0, 0.8)" template=" <img src='assets/images/spinner.gif' />">
+      <p style="color: white"></p>
+  </ngx-spinner>
+  <div style="margin: 10px 20px 0px 20px;">
+    <table mat-table class="basic-table plant-model-table" [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="Select">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox >
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-checkbox [checked]="element.status">
+            
+          </mat-checkbox>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="">
+          <p class="header-text">Name</p>
+        </th>
+        <td mat-cell *matCellDef="let element">{{element.name}}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayColumn"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayColumn;"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4" style="text-align: center;">No data matching</td>
+      </tr>
+    </table>
+    <mat-paginator class="basic-paginataor" [pageSizeOptions]="[50]" showFirstLastButtons>
+    </mat-paginator>
+  </div>
+  <div class="content-top-row content-top-row-order-processing" style="margin-top: 10px;">
+    <div class="example-button-container" style="margin-left: 80%;">
+        <button style="margin-right: 10px;"  mat-fab color="accent" aria-label="Example icon button with a bookmark icon" tooltipPosition="top"  (click)="SaveUserPermission()">
+            <i class="fas fa fa-save" style="font-size: 15px; color: #fff;"></i>
+        </button>
+        <button  mat-fab color="warn" aria-label="Example icon button with a bookmark icon" matTooltip="Cancel " tooltipPosition="top" (click)="closeDialog()">
+            <i [class]="'fa fa-times'"
+            [ngStyle]="{'color': '#fff'}"></i>
+        </button>
+      </div>
+    </div>
+</div>

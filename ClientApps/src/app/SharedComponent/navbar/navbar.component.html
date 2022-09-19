@@ -1,0 +1,104 @@
+<div class="header">
+  <div class="header">
+    <div class="header-menu">
+      <div class="title">MMFS <span>Portal</span></div>
+      <div class="sidebar-btn">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul>
+        <li><a><i class="fas fa-search"></i></a></li>
+        <li><a><i class="fas fa-bell"></i></a></li>
+        <li><a [matMenuTriggerFor]="menu"><i class="fas fa-power-off"></i></a></li>
+      </ul>
+    </div>
+  </div>
+  <ngx-spinner style="z-index: 99;
+    position: absolute;" bdColor="rgba(0, 0, 0, 0.8)" template=" <img src='assets/images/spinner.gif' />">
+      <p style="color: white"></p>
+  </ngx-spinner>
+  <mat-menu #menu="matMenu">
+    <div class="card" style="margin-bottom: 30px; margin: 10px 10px 0px 10px;">
+      <div class="card-header" style="text-align: center;">
+        <h4>{{UserName}}</h4>
+      </div>
+    </div>
+    <ul>
+      <li style="align-items: center;">
+        <img src="{{CurrentUserImage}}" style="width: 150px; height: 150px; margin: 10px 0px 10px 10px;" />
+      </li>
+    </ul>
+    <button mat-menu-item (click)="ChangePassword()">Change Password</button>
+    <button mat-menu-item (click)="ChangeImage()">Change Profile Picture</button>
+    <hr style="background-color: darkblue;">
+    <button mat-menu-item (click)="Logout()" style="text-align: center;">Logout</button>
+  </mat-menu>
+
+  <ng-template #displayResetPasswordModal style="z-index: -99;">
+    <mat-dialog-content>
+      <form [formGroup]="ResetForm">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="card" style="margin-bottom: 30px; width: 100%;">
+            <div class="card-header" style="text-align: center;">
+              <h4>Change Password Form</h4>
+            </div>
+          </div>
+        </div>
+        <div class="content-top-row content-top-row-order-processing">
+          <mat-form-field appearence='fill' class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+            style="width: 100%; margin: 0px -20px 0px -10px;">
+            <mat-label>Current Password</mat-label>
+            <input type="password" matInput formControlName="CurrentPassword" name="CurrentPassword"
+              placeholder="Current Password">
+            <mat-error style="padding: 0px 0px 5px 10px;">
+              Password must have 8 characters, 1 Lowercase, 1 Uppercase, Numbers, 1 Special characters</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="content-top-row content-top-row-order-processing">
+          <mat-form-field appearence='fill' class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+            style="width: 50%; margin: 0px 5px 0px -10px;">
+            <mat-label>New Password</mat-label>
+            <input type="password" matInput formControlName="NewPassword" name="NewPassword" placeholder="New Password">
+            <mat-error style="padding: 0px 0px 5px 10px;">
+              Password must have 8 characters, 1 Lowercase, 1 Uppercase, Numbers, 1 Special characters</mat-error>
+          </mat-form-field>
+          <mat-form-field appearence='fill' class="top-row-first-filed-item top-row-first-filed-item-order-processing"
+            style="width: 50%; margin: 0px 5px 0px 5px;">
+            <mat-label>Confirm Password</mat-label>
+            <input type="password" matInput formControlName="ConfirmPassword" name="ConfirmPassword"
+              placeholder="Confirm Password">
+            <mat-error style="padding: 0px 0px 5px 10px;">
+              Password must have 8 characters, 1 Lowercase, 1 Uppercase, Numbers, 1 Special characters</mat-error>
+          </mat-form-field>
+        </div>
+        <button mat-flat-button color="accent" [disabled]="!ResetForm.valid || !DisabledBtn"
+          class="btn-accent btn-lg submit-btn" style="width: 100%;" (click)="ForgetPassword()">
+          Change Password
+        </button>
+        <button type="button" mat-button class="btn-base btn-simple" (click)="BackBtn()"
+          style="margin: 0px 40% 0px 40%;">
+          <span>Back To Home</span>
+        </button>
+      </form>
+    </mat-dialog-content>
+  </ng-template>
+
+  <ng-template #displayImageUplaodModal>
+    <div mat-dialog-title>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="card" style="margin-bottom: 30px; width: 100%;">
+          <div class="card-header" style="text-align: center;">
+            <h4>Change Image Form</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <mat-dialog-content>
+      <form [formGroup]="ImageForm">
+        <input type="file" formControlName="Image" (change)="onFileChanged($event)" style="margin-bottom: 10px;" />
+        <button mat-flat-button color="accent" [disabled]="!ImageForm.valid" class="btn-accent btn-lg submit-btn"
+          style="margin-top: 0px;" (click)="SellerOnFileSelect()">
+          Change Image
+        </button>
+      </form>
+    </mat-dialog-content>
+  </ng-template>
